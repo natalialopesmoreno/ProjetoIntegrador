@@ -11,10 +11,12 @@ CREATE TABLE `Postagem` (
 
 CREATE TABLE `Tema` (
 	`id_tema` INT NOT NULL AUTO_INCREMENT,
-	`nome` varchar(20) NOT NULL AUTO_INCREMENT,
-	`numero` INT(5000) NOT NULL AUTO_INCREMENT,
-	`descricao_tema` varchar(300) NOT NULL AUTO_INCREMENT,
+	id_postagem INT ,
+	`nome` varchar(20) NOT NULL ,
+	`numero` INT(5000) NOT NULL ,
+	`descricao_tema` varchar(300) NOT NULL ,
 	PRIMARY KEY (`id_tema`)
+	
 );
 
 CREATE TABLE `Usuario` (
