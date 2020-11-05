@@ -35,6 +35,7 @@ public class TemaModel
 	public Long getId_tema() {
 		return Id_tema;
 	}
+	
 	public void setId_tema(Long id_tema) {
 		Id_tema = id_tema;
 	}

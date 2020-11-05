@@ -20,7 +20,7 @@ public class ComentarioModel
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id_postagem;
+	private Long Id_comentario;
 	
 	//CHAVES ESTRANGEIRAS
 	@ManyToOne
@@ -52,10 +52,12 @@ public class ComentarioModel
 	private Boolean curtir;
 	
 	//GETTERS AND SETTERS
+	
 
 	public UsuarioModel getUsuario() {
 		return usuario;
 	}
+
 
 	public void setUsuario(UsuarioModel usuario) {
 		this.usuario = usuario;
@@ -101,9 +103,16 @@ public class ComentarioModel
 		this.curtir = curtir;
 	}
 
-	public Long getId_postagem() {
-		return Id_postagem;
-	} 
+
+	public Long getId_comentario() {
+		return Id_comentario;
+	}
+
+
+	public void setId_comentario(Long id_comentario) {
+		Id_comentario = id_comentario;
+	}
+
 	
 	
 	
