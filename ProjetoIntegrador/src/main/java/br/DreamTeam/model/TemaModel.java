@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Tema")
@@ -27,8 +29,12 @@ public class TemaModel
 	@Column
 	private Integer quantidade;
 	@Column
+	@NotNull
+	@Size(max= 40)
 	private String nome;
 	@Column
+	@Size(max= 300)
+	@NotNull
 	private String descricao;
 	
 	//GETTERS AND SETTERS
