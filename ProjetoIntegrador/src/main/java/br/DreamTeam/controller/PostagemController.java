@@ -18,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import br.DreamTeam.model.PostagemModel;
 import br.DreamTeam.model.TemaModel;
-import br.DreamTeam.model.UsuarioModel;
 import br.DreamTeam.repository.PostagemRepository;
 
 @RestController
@@ -63,14 +62,14 @@ public class PostagemController implements WebMvcConfigurer
 			@GetMapping ("/tema/{tema}")
 			public ResponseEntity<List<PostagemModel>> buscarPorTema(@PathVariable TemaModel tema) 
 			{		
-				return ResponseEntity.ok(repository.findByTema(tema));
+				return ResponseEntity.ok(repository.findByTemaContainingIgnoreCase(tema));
 						
 			}
 			
 			@GetMapping ("/titulo/{titulo}")
 			public ResponseEntity<List<PostagemModel>> buscarPorTitulo(@PathVariable String titulo) 
 			{		
-				return ResponseEntity.ok(repository.findByTitulo(titulo));
+				return ResponseEntity.ok(repository.findByTituloContainingIgnoreCase(titulo));
 						
 			}
 			

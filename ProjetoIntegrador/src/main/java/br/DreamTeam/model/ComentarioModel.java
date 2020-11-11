@@ -36,9 +36,7 @@ public class ComentarioModel
 	
 	
 
-	@Column
-	@NotNull
-	private String titulo;//SERÁ QUE PRECISA TER TÍTULO
+
 	
 	@Column
 	@NotNull
@@ -72,13 +70,6 @@ public class ComentarioModel
 		this.postagem = postagem;
 	}
 
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
 
 	public String getArtigo() {
 		return artigo;

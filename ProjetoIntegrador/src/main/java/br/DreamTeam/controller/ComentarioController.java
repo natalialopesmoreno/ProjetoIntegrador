@@ -37,14 +37,14 @@ public class ComentarioController  implements WebMvcConfigurer
 		
 			//CRUD
 			//CREATE --> POST
-			@PostMapping ("/")
+			@PostMapping 
 			public ResponseEntity<ComentarioModel> criar(@RequestBody ComentarioModel comentario)
 			{
 				return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(comentario));	
 			}
 			
 			//READ --> GET
-			@GetMapping ("/")
+			@GetMapping 
 			public ResponseEntity<List<ComentarioModel>> buscarTodos() 
 			{		
 				return ResponseEntity.ok(repository.findAll());

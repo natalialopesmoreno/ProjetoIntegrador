@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -21,8 +23,16 @@ public class UsuarioModel
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id_usuario;
 	
+	@NotNull
+	@Size(max= 100)
 	private String nome;
+	
+	@NotNull
+	@Size(max= 100)
 	private String login;
+	
+	@NotNull
+	@Size(max= 20)
 	private String senha;
 	
 	//CHAVES ESTRANGEIRAS

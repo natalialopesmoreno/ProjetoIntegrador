@@ -60,7 +60,7 @@ public class UsuarioController implements WebMvcConfigurer
 			@GetMapping ("/nome/{nome}")
 			public ResponseEntity<List<UsuarioModel>> buscarPorNome(@PathVariable String nome) 
 			{		
-				return ResponseEntity.ok(repository.findByNome(nome));
+				return ResponseEntity.ok(repository.findByNomeContainingIgnoreCase(nome));
 			}
 			
 			

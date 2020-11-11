@@ -11,7 +11,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, Long>
 
 	
 
-	List<UsuarioModel> findByNome(String nome);
+	List<UsuarioModel> findByNomeContainingIgnoreCase(String nome);
 
 	
 

@@ -8,6 +8,7 @@ import br.DreamTeam.model.TemaModel;
 
 public interface TemaRepository extends JpaRepository<TemaModel, Long> {
 
-	Optional<TemaModel> findByNome(String nome);
+
+	Optional<TemaModel> findByNomeContainingIgnoreCase(String nome);
 
 }
