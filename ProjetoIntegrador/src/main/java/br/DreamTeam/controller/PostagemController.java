@@ -17,6 +17,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import br.DreamTeam.model.PostagemModel;
+import br.DreamTeam.model.TemaModel;
+import br.DreamTeam.model.UsuarioModel;
 import br.DreamTeam.repository.PostagemRepository;
 
 @RestController
@@ -57,6 +59,21 @@ public class PostagemController implements WebMvcConfigurer
 						.map(postagemId -> ResponseEntity.ok(postagemId))
 						.orElse(ResponseEntity.notFound().build());
 			}
+			
+			@GetMapping ("/tema/{tema}")
+			public ResponseEntity<List<PostagemModel>> buscarPorTema(@PathVariable TemaModel tema) 
+			{		
+				return ResponseEntity.ok(repository.findByTema(tema));
+						
+			}
+			
+			@GetMapping ("/titulo/{titulo}")
+			public ResponseEntity<List<PostagemModel>> buscarPorTitulo(@PathVariable String titulo) 
+			{		
+				return ResponseEntity.ok(repository.findByTitulo(titulo));
+						
+			}
+			
 			
 			
 			//UPDATE --> PUT

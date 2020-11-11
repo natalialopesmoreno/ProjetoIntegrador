@@ -12,25 +12,26 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Comentario")
+@Table(name = "tb_comentario")
 public class ComentarioModel 
 {
 
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id_comentario;
+	private Long id_comentario;
 	
 	//CHAVES ESTRANGEIRAS
 	@ManyToOne
+	@JsonIgnoreProperties("comentarios")
 	@NotNull
-	@Column
 	private UsuarioModel usuario;
 	
 	@ManyToOne
+	@JsonIgnoreProperties("comentarios")
 	@NotNull
-	@Column
 	private PostagemModel postagem;
 	
 	
@@ -105,12 +106,12 @@ public class ComentarioModel
 
 
 	public Long getId_comentario() {
-		return Id_comentario;
+		return id_comentario;
 	}
 
 
 	public void setId_comentario(Long id_comentario) {
-		Id_comentario = id_comentario;
+		this.id_comentario = id_comentario;
 	}
 
 	

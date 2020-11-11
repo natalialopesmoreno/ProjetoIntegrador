@@ -3,9 +3,9 @@ package br.DreamTeam.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,9 +15,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "Postagem")
+@Table(name = "tb_postagem")
 public class PostagemModel 
 {
 	@Id 
@@ -26,16 +27,17 @@ public class PostagemModel
 	
 	//CHAVES ESTRANGEIRAS
 	@ManyToOne
+	@JsonIgnoreProperties("postagens")
 	@NotNull
-	@Column
 	private UsuarioModel usuario;
 	
 	@ManyToOne
+	@JsonIgnoreProperties("postagem")
 	@NotNull
-	@Column
 	private TemaModel tema;
 	
-	@OneToMany(mappedBy = "ComentarioModel", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("postagem")
 	private List<ComentarioModel> comentarios;
 	
 	
@@ -124,12 +126,5 @@ public class PostagemModel
 	} 
 	
 	
-	//GETTERS AND SETTERS
 	
-	
-	
-	/*
-	
-	`curtir` BOOLEAN NOT NULL,
-	 */
 }

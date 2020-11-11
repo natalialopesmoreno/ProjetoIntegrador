@@ -58,6 +58,14 @@ public class TemaController implements WebMvcConfigurer
 							.orElse(ResponseEntity.notFound().build());
 				}
 				
+				@GetMapping ("/nome/{nome}")
+				public ResponseEntity<TemaModel> buscarPorNome(@PathVariable String nome) 
+				{		
+					return repository.findByNome(nome)
+							.map(temaNome -> ResponseEntity.ok(temaNome))
+							.orElse(ResponseEntity.notFound().build());
+				}
+				
 				//UPDATE --> PUT
 				@PutMapping("/{id}")
 				public ResponseEntity<TemaModel> atualizar(@PathVariable Long id, @RequestBody TemaModel tema) 

@@ -2,6 +2,7 @@ package br.DreamTeam.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,8 +14,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name = "Tema")
+@Table(name = "tb_tema")
 public class TemaModel 
 {
 	//ID
@@ -23,7 +26,8 @@ public class TemaModel
 	private Long Id_tema;
 	
 	//CHAVE ESTRANGEIRA
-	@OneToMany(mappedBy = "PostagemModel", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("tema")
 	private List<PostagemModel> postagem;
 	
 	@Column

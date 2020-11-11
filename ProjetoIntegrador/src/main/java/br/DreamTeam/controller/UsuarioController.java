@@ -57,6 +57,12 @@ public class UsuarioController implements WebMvcConfigurer
 						.orElse(ResponseEntity.notFound().build());
 			}
 			
+			@GetMapping ("/nome/{nome}")
+			public ResponseEntity<List<UsuarioModel>> buscarPorNome(@PathVariable String nome) 
+			{		
+				return ResponseEntity.ok(repository.findByNome(nome));
+			}
+			
 			
 			//UPDATE --> PUT
 			@PutMapping("/{id}")
