@@ -9,7 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -43,8 +47,9 @@ public class ComentarioModel
 	private String artigo;//VERIFICAR SE NÃO TEM NENHUM TIPO TEXT
 	
 	
-	@Column
-	@JsonFormat(pattern="yyyy-mm-dd")//VERIFICAR COMO COLOCA A DATA AUTOMÁTICA
+	@Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")//Essa linha fala para o Mysql colocar a data automática
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	private Date data;
 	
 	@Column
