@@ -23,26 +23,24 @@ public class UsuarioModel
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id_usuario;
 	
-	@NotNull
+
 	@Size(max= 100)
 	private String nome;
 	
-	@NotNull
+	
 	@Size(max= 100)
 	private String login;
 	
-	@NotNull
+	
 	@Size(max= 20)
 	private String senha;
 	
-	//CHAVES ESTRANGEIRAS
-	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuario")
-	private List<PostagemModel> postagens;
+	@JsonIgnoreProperties({"usuario","comentarios"})
+	private List<PostagemModel> postagem;
 	
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("usuario")
+	@JsonIgnoreProperties({"usuario"})
 	private List<ComentarioModel> comentarios;
 	
 	
@@ -72,11 +70,11 @@ public class UsuarioModel
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public List<PostagemModel> getPostagens() {
-		return postagens;
+	public List<PostagemModel> getPostagem() {
+		return postagem;
 	}
-	public void setPostagens(List<PostagemModel> postagens) {
-		this.postagens = postagens;
+	public void setPostagem(List<PostagemModel> postagens) {
+		this.postagem = postagens;
 	}
 	public List<ComentarioModel> getComentarios() {
 		return comentarios;

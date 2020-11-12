@@ -27,13 +27,11 @@ public class PostagemModel
 	
 	//CHAVES ESTRANGEIRAS
 	@ManyToOne
-	@JsonIgnoreProperties("postagens")
-	@NotNull
+	@JsonIgnoreProperties({"postagem","comentarios"})
 	private UsuarioModel usuario;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
-	@NotNull
 	private TemaModel tema;
 	
 	@OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL)
@@ -43,11 +41,11 @@ public class PostagemModel
 	
 	
 	@Column
-	@NotNull
+	
 	private String titulo;
 	
 	@Column
-	@NotNull
+	
 	private String artigo;//VERIFICAR SE NÃO TEM NENHUM TIPO TEXT
 	
 	

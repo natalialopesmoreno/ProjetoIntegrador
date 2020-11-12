@@ -32,13 +32,13 @@ public class TemaModel
 	
 	@Column
 	private Integer quantidade;
+	
 	@Column
-	@NotNull
 	@Size(max= 40)
 	private String nome;
+	
 	@Column
 	@Size(max= 300)
-	@NotNull
 	private String descricao;
 	
 	//GETTERS AND SETTERS
