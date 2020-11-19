@@ -24,81 +24,71 @@ import br.DreamTeam.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuarios")
-public class UsuarioController implements WebMvcConfigurer
-{
-
+public class UsuarioController implements WebMvcConfigurer {
 
 	public void addViewControllers(ViewControllerRegistry index) {
 		index.addViewController("/").setViewName("forward:/index.html");
 	}
-	
 
-		//INJETOU O REPOSITÓRIO DO SERVICO PARA COMUNICAR COM O BANCO DE DADOS
-			@Autowired
-			private UsuarioRepository repository;
-			
-			@Autowired
-			private UsuarioService usuarioService;
-			
-			//CRUD
-			//CREATE --> POST
-			@PostMapping 
-			public ResponseEntity<UsuarioModel> criar(@RequestBody UsuarioModel usuario)
-			{
-				return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));	
-			}
-			
-			@PostMapping("/logar")
-			public ResponseEntity<UsuarioLogin> Autentication(@RequestBody Optional<UsuarioLogin> user) {
-				return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp))
-						.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
-			}
-			
-			@PostMapping("/cadastrar")
-			public ResponseEntity<UsuarioModel> Post(@RequestBody UsuarioModel usuario) {
-				return ResponseEntity.status(HttpStatus.CREATED)
-						.body(usuarioService.CadastrarUsuario(usuario));
-			}
-			
-			//READ --> GET
-			@GetMapping 
-			public ResponseEntity<List<UsuarioModel>> buscarTodos() 
-			{		
-				return ResponseEntity.ok(repository.findAll());
-			}
-			
-			@GetMapping ("/{id}")
-			public ResponseEntity<UsuarioModel> buscarUm(@PathVariable Long id) 
-			{		
-				return repository.findById(id)
-						.map(usuarioId -> ResponseEntity.ok(usuarioId))
-						.orElse(ResponseEntity.notFound().build());
-			}
-			
-			@GetMapping ("/nome/{nome}")
-			public ResponseEntity<List<UsuarioModel>> buscarPorNome(@PathVariable String nome) 
-			{		
-				return ResponseEntity.ok(repository.findByNomeContainingIgnoreCase(nome));
-			}
-			
-			
-			//UPDATE --> PUT
-			@PutMapping("/{id}")
-			public ResponseEntity<UsuarioModel> atualizar(@PathVariable Long id, @RequestBody UsuarioModel usuario) 
-			{
-				usuario.setId_usuario(id);
-				return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
-			}
-			
-			//DELETE --> DELETE
-			@DeleteMapping ("/{id}")
-			public void remover(@PathVariable Long id) 
-			{		
-				repository.deleteById(id);
-			}
-			
+	// INJETOU O REPOSITÓRIO DO SERVICO PARA COMUNICAR COM O BANCO DE DADOS
+	@Autowired
+	private UsuarioRepository repository;
+
+	@Autowired
+	private UsuarioService usuarioService;
+
+	// CRUD
+	// CREATE --> POST
+	@PostMapping
+	public ResponseEntity<UsuarioModel> criar(@RequestBody UsuarioModel usuario) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
+	}
+
+	@PostMapping("/logar")
+	public ResponseEntity<UsuarioLogin> Autentication(@RequestBody Optional<UsuarioLogin> user) {
+		return usuarioService.Logar(user).map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	}
+
+	@PostMapping("/cadastrar")
+	public ResponseEntity<UsuarioModel> Post(@RequestBody UsuarioModel usuario) {
+		Optional<UsuarioModel> user = usuarioService.CadastrarUsuario(usuario);
+		try {
+			return ResponseEntity.ok(user.get());
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
+
+	}
+
+	// READ --> GET
+	@GetMapping
+	public ResponseEntity<List<UsuarioModel>> buscarTodos() {
+		return ResponseEntity.ok(repository.findAll());
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<UsuarioModel> buscarUm(@PathVariable Long id) {
+		return repository.findById(id).map(usuarioId -> ResponseEntity.ok(usuarioId))
+				.orElse(ResponseEntity.notFound().build());
+	}
+
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<UsuarioModel>> buscarPorNome(@PathVariable String nome) {
+		return ResponseEntity.ok(repository.findByNomeContainingIgnoreCase(nome));
+	}
+
+	// UPDATE --> PUT
+	@PutMapping("/{id}")
+	public ResponseEntity<UsuarioModel> atualizar(@PathVariable Long id, @RequestBody UsuarioModel usuario) {
+		usuario.setId_usuario(id);
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
+	}
+
+	// DELETE --> DELETE
+	@DeleteMapping("/{id}")
+	public void remover(@PathVariable Long id) {
+		repository.deleteById(id);
+	}
 
 }
-
-
-

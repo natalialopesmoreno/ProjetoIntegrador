@@ -1,4 +1,4 @@
-package br.DreamTeam.segurança;
+package br.DreamTeam.seguranca;
 
 import java.util.Optional;
 

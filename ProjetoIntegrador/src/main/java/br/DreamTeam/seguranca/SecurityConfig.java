@@ -1,4 +1,4 @@
-package br.DreamTeam.segurança;
+package br.DreamTeam.seguranca;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

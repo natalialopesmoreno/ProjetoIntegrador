@@ -70,7 +70,13 @@
 			"name": "POST_TEMA",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bmF0aToxMjM0NQ==",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"postagem\": [],\r\n    \"quantidade\": 7,\r\n    \"nome\": \"TesteNomeTESTE-POSTMAN-DELEETEEE\",\r\n    \"descricao\": \"Teste-TESTE-POSTMAN-DELEETEE\"\r\n    \r\n}",
@@ -560,6 +566,106 @@
 					"path": [
 						"comentario",
 						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SECURITY_CADASTRAR_USUARIO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n  \"usuario\": \"nati\",\r\n  \"nome\": \"Natália\",\r\n  \"senha\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/usuarios/cadastrar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SECURITY_LOGAR_USUARIO",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "nati",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n  \"usuario\": \"nati\",\r\n  \"senha\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/usuarios/logar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"logar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SECURITY_TEST_TOKEN",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bmF0aToxMjM0NQ==",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/index.html",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"index.html"
 					]
 				}
 			},
